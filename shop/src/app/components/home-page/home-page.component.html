@@ -1,0 +1,10 @@
+<p>
+  {{ title }}
+</p>
+<ul>
+  <li *ngFor="let product of list; let index = index;">
+    {{ index }} - id: {{ product.id }} - name: {{ product.name | custom }} - price: {{ product.price }}
+    <app-buy-btn [id]="product.id"></app-buy-btn>
+  </li>
+</ul>
+<router-outlet></router-outlet>

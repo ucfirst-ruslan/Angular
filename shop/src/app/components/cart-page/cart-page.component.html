@@ -1,0 +1,10 @@
+<div>
+  <span>Total: {{ total }}</span>
+  <button (click)="changeTest2()">TEST BTN</button>
+  <ul>
+    <li *ngFor="let item of items; let index = index;"> 
+      <app-cart-item [id]="item.id" (test)="test($event)" [(test2)]="test2"></app-cart-item>
+      <button (click)="remove(index)">X</button>
+    </li>
+  </ul>
+</div>
