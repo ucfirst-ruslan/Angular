@@ -1,0 +1,19 @@
+<div class="header">
+    <h2>
+        {{title}}
+    </h2>
+</div>
+<div class="nav">
+    <div> <button class="btn" (click)="prevPage()">Prev Page</button></div>
+    <div> <button class="btn" (click)="nextPage()">Next Page</button></div>
+</div>
+<div class="container-home">
+    <article *ngFor="let track of _streamService.list; let index = index;">
+        <a [routerLink]="['/play/', track.user.permalink, track.permalink]"><img [src]='track.artwork_url'> </a>
+        <div class="desc">
+            <h3 class="title"><a [routerLink]="['/play/', track.user.permalink, track.permalink]">{{track.title}} </a></h3>
+            <p class="genre"> {{track.genre}} </p>
+            <p class="duration"> {{track.duration | durations}}</p>
+        </div>
+    </article>
+</div>

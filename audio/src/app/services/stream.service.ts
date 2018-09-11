@@ -13,32 +13,35 @@ interface Tracks {
   stream_url: string;
 }
 
+interface Categories {
+  id: string;
+  name: string;
+}
+
 
 @Injectable()
 export class StreamService {
-  public list: Tracks[] = [];
   
-  constructor(private http?: HttpClient) { 
-   
-  }
+  public list: Tracks[] = [];
+  public listCat: Categories[] = [];
+
+  constructor(private http?: HttpClient) { }
 
   public setTracks(tracks: Array<Tracks>) {
 	  this.list = tracks;
   }
 
-  public getTrackById(id) {
-    console.log(this.list, 'stream');
-    return this.list.find(item => item.id === id);
+  public setCategories(categories: Array<Categories>) {
+	  this.listCat = categories;
   }
 
-  public getTracks(page): Observable<Tracks[]> {
-    return this.http.get<Tracks[]>(`https://api-v2.hearthis.at/categories/chillout/?count=6&page=${page}`);
-
-    // По уму надо тащить список категорий и делать на странице select
-    //https://api-v2.hearthis.at/categories/ - json list categories
-    //https://hearthis.at/api-v2/
+  public getTracks(page, cat): Observable<Tracks[]> {
     
+    return this.http.get<Tracks[]>(`https://api-v2.hearthis.at/categories/${cat}/?count=6&page=${page}`);
+  }
 
+  public getCategories(): Observable<Categories[]> {
+    return this.http.get<Categories[]>(`https://api-v2.hearthis.at/categories/`);
   }
 
 }

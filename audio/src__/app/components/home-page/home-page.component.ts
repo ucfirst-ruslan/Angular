@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {StreamService} from '../../services/stream.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import {FormControl, FormGroup} from '@angular/forms';
-
+import { ActivatedRoute, Router } from '../../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -12,26 +10,14 @@ import {FormControl, FormGroup} from '@angular/forms';
 export class HomePageComponent implements OnInit {
   title = 'Это ни разу не блог';
 
-  curentPage = 1;
-  private $sub: any;
-  
-  categories = [
-    {id:"chillout",name:"Chillout"}
-  ]; 
-  cat =  this.categories[0].id;
-
   constructor(public _streamService: StreamService,
               private route: ActivatedRoute,
               private router: Router) { }
 
-  onChange(categories) {
-    this.cat = categories;
-    this.loadPage();
-  }
+  curentPage = 1;
+  private $sub: any;
 
   ngOnInit() {
-    this.loadCats();
-
     this.$sub = this.route.params.subscribe(params => {
       const page = +params['page'];
       if(page>0 && page<100)
@@ -45,9 +31,8 @@ export class HomePageComponent implements OnInit {
       }
       
    });
-   
   }
-  
+
   nextPage() {
     this.curentPage++;
     this.router.navigate([`/page/${this.curentPage}`]);
@@ -59,16 +44,9 @@ export class HomePageComponent implements OnInit {
   }
 
   loadPage() {
-    this._streamService.getTracks(this.curentPage, this.cat)
+    this._streamService.getTracks(this.curentPage)
       .subscribe((data)=> {
         this._streamService.setTracks(data);
-      });
-  }
-
-  loadCats() {
-    this._streamService.getCategories()
-      .subscribe((data)=> {
-        this._streamService.setCategories(data);
       });
   }
 

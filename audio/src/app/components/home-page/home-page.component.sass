@@ -35,7 +35,60 @@
     color: #b6bbcc;
     background: linear-gradient(to bottom, #3c4456 0%,#3c4355 100%);
 
-.container-home
+.fl-container
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-content: stretch;
+  align-items: flex-start;
+
+.fl-pg-nav
+  order: 0;
+  flex: 0 1 auto;
+  align-self: center;
+
+.fl-article
+  order: 0;
+  flex: 1 1 auto;
+  align-self: auto;
+
+.arrow
+  position: relative
+  display: inline-block
+  width: 3rem
+  height: 5rem
+  margin: 2rem
+  cursor: pointer
+  
+  &::before
+    content: ''
+    display: block
+    position: absolute
+    top: 50%
+    border: 4px solid rgba(255, 255, 255, 0.46)
+    width: 4rem
+    height: 4rem
+    -webkit-transform: translateY(-50%) rotate(45deg)
+    transform: translateY(-50%) rotate(45deg)
+  
+.arrow-left:hover 
+  left: 7px
+    
+.arrow-left::before
+  left: 10px
+  border-right: 0
+  border-top: 0
+
+.arrow-right:hover
+  right: 7px
+
+.arrow-right::before
+  right: 10px
+  border-left: 1px
+  border-bottom: 1px
+
+.container-article
   display: flex
   justify-content: space-around
   flex-wrap: wrap
@@ -75,5 +128,46 @@ article
         &:hover
           text-decoration: underline
           
-    
-    
+.select-css
+  background-color: #eee
+  color: #5a5a5a
+  position: relative
+  width: 250px
+  border-radius: 3px
+  margin: 0 auto 20px auto;
+  &:before
+    display: block
+    border-top: 6px solid gray
+    border-left: 6px solid transparent
+    border-right: 6px solid transparent
+    position: absolute
+    top: 16px
+    right: 10px
+    text-align: center
+    content: ''
+    pointer-events: none
+  select
+    background-color: transparent
+    border: 0 none
+    box-shadow: none
+    color: #5a5a5a
+    display: block
+    font-size: 100%
+    line-height: normal
+    margin: 0
+    padding: .5em
+    outline: none;
+    width: 100%
+    -webkit-appearance: none
+    -moz-appearance: none
+    appearance: none
+    &::-ms-expand
+      display: none
+
+select:-moz-focusring
+  color: transparent
+  text-shadow: 0 0 0 #000
+
+.select-css option
+  background-color: red
+  /*   padding: 100px 0;

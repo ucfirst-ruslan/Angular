@@ -3,17 +3,32 @@
         {{title}}
     </h2>
 </div>
-<div class="nav">
-    <div> <button class="btn" (click)="prevPage()">Prev Page</button></div>
-    <div> <button class="btn" (click)="nextPage()">Next Page</button></div>
+
+<div class="nav select-css">
+    Select Category:
+    <select class="browser-default" [(ngModel)]="categorieid" (ngModelChange)="onChange($event)">
+        <option *ngFor="let categorie of _streamService.listCat" [ngValue]="categorie.id"> {{categorie.name}}</option>
+    </select>
+
 </div>
-<div class="container-home">
-    <article *ngFor="let track of _streamService.list; let index = index;">
-        <a [routerLink]="['/play/', track.user.permalink, track.permalink]"><img [src]='track.artwork_url'> </a>
-        <div class="desc">
-            <h3 class="title"><a [routerLink]="['/play/', track.user.permalink, track.permalink]">{{track.title}} </a></h3>
-            <p class="genre"> {{track.genre}} </p>
-            <p class="duration"> {{track.duration | durations}}</p>
+
+<div class="fl-container">
+    <div class="fl-pg-nav">
+        <div class="arrow arrow-left" (click)="prevPage()"></div>
+    </div>
+    <div class="fl-article">
+        <div class="container-article">
+            <article *ngFor="let track of _streamService.list; let index = index;">
+                <a [routerLink]="['/play/', track.user.permalink, track.permalink]"><img [src]='track.artwork_url'> </a>
+                <div class="desc">
+                    <h3 class="title"><a [routerLink]="['/play/', track.user.permalink, track.permalink]">{{track.title}} </a></h3>
+                    <p class="genre"> {{track.genre}} </p>
+                    <p class="duration"> {{track.duration | durations}}</p>
+                </div>
+            </article>
         </div>
-    </article>
+    </div>
+    <div class="fl-pg-nav">
+        <div class="arrow arrow-right" (click)="nextPage()"></div>
+    </div>
 </div>
