@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {StreamService} from '../../services/stream.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import {FormControl, FormGroup} from '@angular/forms';
-// import {enableProdMode} from '@angular/core';
+//import {FormControl, FormGroup} from '@angular/forms';
 
-// enableProdMode();
 
 @Component({
   selector: 'app-home-page',
@@ -17,9 +15,10 @@ export class HomePageComponent implements OnInit {
   curentPage = 1;
   private $sub: any;
   
-  categories = {id: "chillout", name: "Chillout", url: "https://hearthis.at/categories/chillout/", api_url: "https://api-v2.hearthis.at/categories/chillout/"}; 
-  
-  cat = this.categories.id;
+  categories = [
+    {id:"chillout",name:"Chillout"}
+  ]; 
+  cat =  this.categories[0].id;
 
   constructor(public _streamService: StreamService,
               private route: ActivatedRoute,
@@ -27,6 +26,7 @@ export class HomePageComponent implements OnInit {
 
   onChange(categories) {
     this.cat = categories;
+    console.log(this.cat);
     this.loadPage();
   }
 
