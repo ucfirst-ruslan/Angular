@@ -19,9 +19,7 @@ export class PlayerPageComponent implements OnInit {
   private $sub: any;
   track: any = [];
   
-  constructor(private route: ActivatedRoute, private http?: HttpClient) {
-   
-  }
+  constructor(private route: ActivatedRoute, private http?: HttpClient) { }
   
   ngOnInit(): void {
     this.$sub = this.route.params.subscribe(params => {
@@ -33,14 +31,7 @@ export class PlayerPageComponent implements OnInit {
       this.track = data;
     });
 
-    // background: url(https://hearthis.at/_/cache/waveform_mask/2/3/2368666.png) no-repeat;
-    // background-size: cover;
-    // filter: contrast 100%;
-    // /* filter: invert(100%); */
-    // filter: brightness(200%);
-
-    //[style.background-image]="track.waveform_url"
-// Start Player Code
+//Start player code
     var player = $('.player'),
     audio = player.find('audio'),
     duration = $('.duration'),

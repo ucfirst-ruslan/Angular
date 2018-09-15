@@ -5,7 +5,6 @@
 </div>
 
 <div class="nav select-css">
-    Select Category:
     <select class="browser-default" [(ngModel)]="categorieid" (ngModelChange)="onChange($event)">
         <option *ngFor="let categorie of _streamService.listCat" [ngValue]="categorie.id"  [selected]="categorie.selected?true:false"> {{categorie.name}}</option>
     </select>
